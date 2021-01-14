@@ -10,7 +10,8 @@ When all containers are launched, you need to create a topic in kafka. To do thi
 
 Then, let's create a topic called `sms_text_topic`:
 
-`kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 2 --topic sms_text_topic`
+`kafka-topics --create --bootstrap-server localhost:9092 \
+--replication-factor 1 --partitions 2 --topic sms_text_topic`
 
 After that in others console windows run producer (from kafka-project/producer):
 
@@ -18,7 +19,9 @@ After that in others console windows run producer (from kafka-project/producer):
 
 And run spark job (from kafka-project/producer):
 
-`spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 spark_job_spam_det.py localhost:9092 sms_text_topic
+`spark-submit \
+--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 \
+spark_job_spam_det.py localhost:9092 sms_text_topic
 `
 
 
@@ -28,5 +31,7 @@ Another example (with averaging over RDD using sql) can be run, there is create 
 
 And corresponding spark job consumer:
 
-`spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 spark_job_univ_score.py localhost:9092 test_topic
+`spark-submit \
+--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 \
+spark_job_univ_score.py localhost:9092 test_topic
 `
