@@ -20,6 +20,7 @@ sqlQueryPath = 'sql/university_score.sql'
 logger = logging.getLogger('MyLogger')
 logger.setLevel(logging.DEBUG)
 
+
 def get_sql_query():
     strSQL = ''
 
@@ -35,9 +36,9 @@ def get_sql_query():
 
 def getSparkSessionInstance(sparkConf):
     if ('sparkSessionSingletonInstance' not in globals()):
-        globals()['sparkSessionSingletonInstance'] = SparkSession\
-            .builder\
-            .config(conf=sparkConf)\
+        globals()['sparkSessionSingletonInstance'] = SparkSession \
+            .builder \
+            .config(conf=sparkConf) \
             .getOrCreate()
     return globals()['sparkSessionSingletonInstance']
 
