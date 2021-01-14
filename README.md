@@ -8,6 +8,25 @@ When all containers are launched, you need to create a topic in kafka. To do thi
 
 `docker exec -ti kafka bash`
 
-Then, let's create a topic called `test_topic`:
+Then, let's create a topic called `sms_text_topic`:
 
-`kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 2 --partitions 2 --topic test_topic`
+`kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 2 --topic sms_text_topic`
+
+After that in others console windows run producer (from kafka-project/producer):
+
+`python sample_sms_producer.py`
+
+And run spark job (from kafka-project/producer):
+
+`spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 spark_job_spam_det.py localhost:9092 sms_text_topic
+`
+
+
+Another example (with averaging over RDD using sql) can be run, there is create a topic 'test_topic' and run the corresponding reducer (from kafka-project/producer):
+
+`python sample_producer.py`
+
+And corresponding spark job consumer:
+
+`spark-submit --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 spark_job_univ_score.py localhost:9092 test_topic
+`

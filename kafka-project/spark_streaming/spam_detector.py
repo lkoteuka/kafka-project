@@ -1,14 +1,11 @@
-import sparknlp
 from pyspark.ml import Pipeline
 from sparknlp import DocumentAssembler
 from sparknlp.base import LightPipeline
 from sparknlp.pretrained import UniversalSentenceEncoder, ClassifierDLModel
 
-spark = sparknlp.start()
-
 
 class SpamDetector:
-    def __init__(self):
+    def __init__(self, spark):
         self.document_assembler = DocumentAssembler() \
             .setInputCol("text") \
             .setOutputCol("document")

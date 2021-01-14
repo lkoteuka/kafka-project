@@ -7,3 +7,12 @@ create table university_score
 	constraint university_score_pk
 		unique (university_name, subject_name, curr_time)
 );
+create table sms_classifier
+(
+	curr_time varchar,
+	sender_id int,
+	sms_text varchar,
+	sms_class varchar,
+	constraint sms_classifier_pk
+		unique (curr_time, sender_id)
+);

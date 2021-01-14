@@ -1,9 +1,13 @@
+import logging
 import time
 from json import dumps
 from time import sleep
 
 from kafka import KafkaProducer
 from numpy.random import choice, randint
+
+logger = logging.getLogger('MyLogger')
+logger.setLevel(logging.DEBUG)
 
 
 def get_random_query():
@@ -43,6 +47,7 @@ if __name__ == "__main__":
 
             except Exception as e:
                 print('--> It seems an Error occurred: {}'.format(e))
+                logger.error("Error while sending message: " % str(e))
 
             finally:
                 producer.flush()
