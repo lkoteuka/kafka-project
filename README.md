@@ -39,3 +39,13 @@ spark-submit \
 --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 \
 spark_job_univ_score.py localhost:9092 test_topic
 ```
+
+Example with ML model for purchasing prediction (topic `ads_topic`):
+
+`python sample_ads_producer.py`
+
+```
+spark-submit \
+--packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.0.2,org.postgresql:postgresql:9.4.1207 \
+spark_job_ads_purchase_pred.py localhost:9092 ads_topic
+```
